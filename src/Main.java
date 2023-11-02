@@ -48,8 +48,8 @@ class Main {
         boolean isRoman = isRomanNumeral(operand1) && isRomanNumeral(operand2);
 
         if (isRoman) {
-            int num1 = romanToArabic(operand1);
-            int num2 = romanToArabic(operand2);
+            int num1 = latinToArabic(operand1);
+            int num2 = latinToArabic(operand2);
 
             int result;
             switch (operator) {
@@ -75,7 +75,7 @@ class Main {
             if (result < 1) {
                 throw new Exception("Неверный результат для римских чисел");
             }
-            return arabicToRoman(result);
+            return arabicTolatin(result);
         } else {
             int num1 = Integer.parseInt(operand1);
             int num2 = Integer.parseInt(operand2);
@@ -105,7 +105,7 @@ class Main {
         }
     }
 
-    private static int romanToArabic(String input) {
+    private static int latinToArabic(String input) {
         switch (input) {
             case "I":
                 return 1;
@@ -132,7 +132,7 @@ class Main {
         }
     }
 
-    private static String arabicToRoman(int number) {
+    private static String arabicTolatin(int number) {
         if (number < 1 || number > 10) {
             return "";
         }
