@@ -44,13 +44,11 @@ class Main {
 
         String operand1 = tokens[0].trim();
         String operand2 = tokens[1].trim();
-
         boolean isRoman = isLatinNumeral(operand1) && isLatinNumeral(operand2);
 
         if (isRoman) {
             int num1 = latinToArabic(operand1);
             int num2 = latinToArabic(operand2);
-
             int result;
             switch (operator) {
                 case "+":
@@ -71,7 +69,6 @@ class Main {
                 default:
                     throw new Exception("Неверный оператор");
             }
-
             if (result < 1) {
                 throw new Exception("Неверный результат для римских чисел");
             }
@@ -79,7 +76,6 @@ class Main {
         } else {
             int num1 = Integer.parseInt(operand1);
             int num2 = Integer.parseInt(operand2);
-
             int result;
             switch (operator) {
                 case "+":
@@ -100,7 +96,6 @@ class Main {
                 default:
                     throw new Exception("Неверный оператор");
             }
-
             return String.valueOf(result);
         }
     }
