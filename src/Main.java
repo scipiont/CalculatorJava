@@ -45,7 +45,7 @@ class Main {
         String operand1 = tokens[0].trim();
         String operand2 = tokens[1].trim();
 
-        boolean isRoman = isRomanNumeral(operand1) && isRomanNumeral(operand2);
+        boolean isRoman = isLatinNumeral(operand1) && isLatinNumeral(operand2);
 
         if (isRoman) {
             int num1 = latinToArabic(operand1);
@@ -151,7 +151,7 @@ class Main {
         };
     }
 
-    private static boolean isRomanNumeral(String input) {
+    private static boolean isLatinNumeral(String input) {
         String[] romanNumerals = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         return Arrays.asList(romanNumerals).contains(input);
     }
