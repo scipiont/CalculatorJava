@@ -1,6 +1,7 @@
 import java.util.*;
-///calc///
+//calc//
 class Main {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -49,6 +50,11 @@ class Main {
         if (isRoman) {
             int num1 = latinToArabic(operand1);
             int num2 = latinToArabic(operand2);
+
+            if (num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10) {
+                throw new Exception("Неверный ввод для римских чисел");
+            }
+
             int result;
             switch (operator) {
                 case "+":
@@ -69,13 +75,15 @@ class Main {
                 default:
                     throw new Exception("Неверный оператор");
             }
-            if (result < 1) {
-                throw new Exception("Неверный результат для римских чисел");
-            }
-            return arabicTolatin(result);
+            return arabicToLatin(result);
         } else {
             int num1 = Integer.parseInt(operand1);
             int num2 = Integer.parseInt(operand2);
+
+            if (num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10) {
+                throw new Exception("Введено число меньше единицы или более десяти для арабских чисел");
+            }
+
             int result;
             switch (operator) {
                 case "+":
@@ -98,6 +106,34 @@ class Main {
             }
             return String.valueOf(result);
         }
+    }
+
+    private static String arabicToLatin(int number) {
+        if (number < 1) {
+            return "Неверный результат для римских чисел";
+        }
+        StringBuilder result = new StringBuilder();
+        while (number >= 10) {
+            result.append("X");
+            number -= 10;
+        }
+        while (number >= 9) {
+            result.append("IX");
+            number -= 9;
+        }
+        while (number >= 5) {
+            result.append("V");
+            number -= 5;
+        }
+        while (number >= 4) {
+            result.append("IV");
+            number -= 4;
+        }
+        while (number >= 1) {
+            result.append("I");
+            number -= 1;
+        }
+        return result.toString();
     }
 
     private static int latinToArabic(String input) {
@@ -125,25 +161,6 @@ class Main {
             default:
                 return -1;
         }
-    }
-
-    private static String arabicTolatin(int number) {
-        if (number < 1 || number > 10) {
-            return "";
-        }
-        return switch (number) {
-            case 1 -> "I";
-            case 2 -> "II";
-            case 3 -> "III";
-            case 4 -> "IV";
-            case 5 -> "V";
-            case 6 -> "VI";
-            case 7 -> "VII";
-            case 8 -> "VIII";
-            case 9 -> "IX";
-            case 10 -> "X";
-            default -> "";
-        };
     }
 
     private static boolean isLatinNumeral(String input) {
