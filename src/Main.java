@@ -108,33 +108,28 @@ class Main {
         }
     }
 
+
     private static String arabicToLatin(int number) {
         if (number < 1) {
             return "Неверный результат для римских чисел";
         }
+
         StringBuilder result = new StringBuilder();
-        while (number >= 10) {
-            result.append("X");
-            number -= 10;
+
+        String[] symbols = {"C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        int[] values = {100, 90, 50, 40, 10, 9, 5, 4, 1};
+
+        for (int i = 0; i < symbols.length; i++) {
+            while (number >= values[i]) {
+                result.append(symbols[i]);
+                number -= values[i];
+            }
         }
-        while (number >= 9) {
-            result.append("IX");
-            number -= 9;
-        }
-        while (number >= 5) {
-            result.append("V");
-            number -= 5;
-        }
-        while (number >= 4) {
-            result.append("IV");
-            number -= 4;
-        }
-        while (number >= 1) {
-            result.append("I");
-            number -= 1;
-        }
+
         return result.toString();
     }
+
+
 
     private static int latinToArabic(String input) {
         switch (input) {
